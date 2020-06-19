@@ -1,0 +1,39 @@
+<aside class="sidebar text-xl">
+    <div class="sidebar-content w-48 text-center">
+        <hr />
+        <br />
+        <% if(session.user){ %>
+        <p>
+            마이페이지
+        </p>
+        <% }else{ %>
+        <p>
+            로그인/가입
+        </p>
+        <% } %>
+        <br />
+        <hr />
+        <br />
+        <p>
+            메뉴 2
+        </p>
+        <br />
+        <hr />
+        <br />
+        <p>
+            메뉴 3
+        </p>
+        <br />
+        <hr />
+        <br />
+        <p>
+            메뉴 4
+        </p>
+        <br />
+        <hr />
+        <br />
+    </div>
+    <button><span class="sidebar-btn">OPEN</span></button>
+</aside>
+
+<script src="javascripts/sidebar.js"></script>

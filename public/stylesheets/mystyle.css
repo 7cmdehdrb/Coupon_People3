@@ -1,0 +1,50 @@
+button {
+    outline: none;
+}
+button .sidebar-btn {
+    color: #fff;
+    font-weight: bold;
+}
+.sidebar {
+    background-color: #222;
+    width: 270px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -270px;
+    z-index: 9999;
+}
+.sidebar > .sidebar-content {
+    position: absolute;
+    top: 20px;
+    left: 75px;
+    color: #fff;
+}
+
+.sidebar button {
+    background-color: #222;
+    display: block;
+    position: absolute;
+    top: 117px;
+    left: 270px;
+    width: 70px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: none;
+    z-index: 9999;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+footer {
+    background-color: #dedede;
+}
+
+input:focus {
+    background: none;
+}

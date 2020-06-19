@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "nodemon --exec babel-node app.js"
+        "start": "nodemon --exec babel-node app.js",
+        "css": "gulp"
     },
     "dependencies": {
         "@babel/core": "^7.10.2",
@@ -17,11 +18,18 @@
         "ejs": "~2.6.1",
         "express": "~4.16.1",
         "express-session": "^1.17.1",
+        "gulp-csso": "^4.0.1",
+        "gulp-postcss": "^8.0.0",
+        "gulp-sass": "^4.1.0",
         "http-errors": "~1.6.3",
         "mongoose": "^5.9.19",
-        "morgan": "~1.9.1"
+        "morgan": "~1.9.1",
+        "node-sass": "^4.14.1",
+        "tailwindcss": "^1.4.6"
     },
     "devDependencies": {
+        "autoprefixer": "^9.8.0",
+        "gulp": "^4.0.2",
         "nodemon": "^2.0.4"
     }
 }
