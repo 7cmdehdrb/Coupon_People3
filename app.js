@@ -9,9 +9,24 @@ const session = require("express-session");
 const indexRouter = require("./server/routes/index");
 const usersRouter = require("./server/routes/users");
 
+import passport from "passport";
+
 import "./dotenv";
 import "./mongoose";
 import "./middleware";
+import { githubStrategy } from "./passport";
+
+passport.serializeUser((user, done) => {
+    // Strategy 성공 시 호출됨
+    done(null, user); // 여기의 user가 deserializeUser의 첫 번째 매개변수로 이동
+});
+
+passport.deserializeUser((user, done) => {
+    // 매개변수 user는 serializeUser의 done의 인자 user를 받은 것
+    done(null, user); // 여기의 user가 req.user가 됨
+});
+
+passport.use(githubStrategy);
 
 const app = express();
 
@@ -20,6 +35,7 @@ app.set("views", path.join(__dirname, "server/views"));
 app.set("view engine", "ejs");
 
 app.use(logger("dev"));
+app.use(passport.initialize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));

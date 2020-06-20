@@ -6,7 +6,9 @@ import { tradeModel } from "../models/trades";
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
-    const session = req.session;
+    const { session } = req;
+
+    console.log(session);
 
     const userQuery = userModel.find().count();
     const couponQuery = couponModel.find().count();

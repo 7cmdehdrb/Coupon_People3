@@ -1,17 +1,18 @@
 <div class="flex justify-between h-24 py-4">
     <div class="flex-1">.</div>
     <div class="flex-1">
-        <a href="/"><img src="images/logo.png" class="mx-auto" style="cursor: pointer;" width="96px" /></a>
+        <a href="/"><img src="/images/logo.png" class="mx-auto" style="cursor: pointer;" width="96px" /></a>
     </div>
     <div class="flex-1 flex items-start justify-end mr-5">
         <a href="#"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">쿠폰보기</div></a>
         <span onclick="openSearchField()"
             ><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700"><i class="fas fa-search"></i> 검색하기</div></span
         >
-        <% if(session.user){ %>
-        <a href="#"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">마이페이지</div></a>
+        <% if(session.passport){ %>
+        <a href="#"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700"><%= session.passport.user.nickname %>님</div></a>
+        <a href="/users/logout"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">로그아웃</div></a>
         <% }else{ %>
-        <a href="#"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">로그인/가입</div></a>
+        <a href="/users/login"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">로그인/가입</div></a>
         <% } %>
     </div>
 </div>

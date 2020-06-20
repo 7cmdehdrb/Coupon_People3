@@ -44,7 +44,3 @@ body {
 footer {
     background-color: #dedede;
 }
-
-input:focus {
-    background: none;
-}
