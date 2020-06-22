@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-import { userModel } from "../models/users";
+import { userModel, interestModel } from "../models/users";
 import { couponModel } from "../models/coupons";
 import { tradeModel } from "../models/trades";
 
@@ -8,54 +8,18 @@ import { tradeModel } from "../models/trades";
 router.get("/", async (req, res, next) => {
     const { session } = req;
 
-    console.log(session);
+    // console.log(session);
 
-    const userQuery = userModel.find().count();
-    const couponQuery = couponModel.find().count();
-    const tradeQuery = tradeModel.find().count();
-
-    let userCnt = 0;
-    let couponCnt = 0;
-    let tradeCnt = 0;
-
-    try {
-        await userQuery.exec((err, data) => {
-            if (err) {
-                console.log("ERROR ON INDEX");
-                console.log(err);
-            }
-
-            userCnt = data;
-        });
-
-        await couponQuery.exec((err, data) => {
-            if (err) {
-                console.log("ERROR ON INDEX");
-                console.log(err);
-            }
-
-            couponCnt = data;
-        });
-
-        await tradeQuery.exec((err, data) => {
-            if (err) {
-                console.log("ERROR ON INDEX");
-                console.log(err);
-            }
-
-            tradeCnt = data;
-        });
-    } catch (error) {
-        console.log(error);
-        next(createError(404));
-    }
+    const userQuery = await userModel.find().count().exec();
+    const couponQuery = await couponModel.find().count().exec();
+    const tradeQuery = await tradeModel.find().count().exec();
 
     res.render("core/index", {
         session: session,
         data: {
-            userCnt,
-            couponCnt,
-            tradeCnt,
+            userCnt: userQuery,
+            couponCnt: couponQuery,
+            tradeCnt: tradeQuery,
         },
     });
 });

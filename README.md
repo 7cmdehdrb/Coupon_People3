@@ -1,23 +1,23 @@
 # Coupon_People
-Web application for buying old coupons! 
+
+Web application for buying old coupons!
 
 <hr>
 
 # FUNTION
 
-[ ] USER - SIGN UP<br>
-[ ] USER - LOGIN / LOGOUT<br>
-[ ] USER - SOCIAL LOGIN<br>
-[ ] USER - EMAIL VERIFICATION
-[ ] USER - FIND MY PASSWORD<br>
+[x] USER - SIGN UP<br>
+[x] USER - LOGIN / LOGOUT<br>
+[x] USER - SOCIAL LOGIN<br>
+[x] USER - EMAIL VERIFICATION
+[X] USER - RESET MY PASSWORD<br>
+[ ] USER - EDIT MY PROFILE<br>
 [ ] USER - MAKE USER UNACTIVATED<br>
 [ ] USER - SEE OTHER USERS PROFILE<br>
-[ ] USER - SEE MY PROFILE<br>
-	>	[ ] USER - SEE COUPON
-<br>
-	>	[ ] USER - SEE TRADE
-<br>
-	>	[ ] USER - SEE COMMENT
+[ ] USER - SEE MY PROFILE
+<br> > [ ] USER - SEE COUPON
+<br> > [ ] USER - SEE TRADE
+<br> > [ ] USER - SEE COMMENT
 <br>
 [ ] USER - UPDATE MY PROFILE<br>
 [ ] USER - CHARGE POINT<br>
@@ -47,8 +47,7 @@ Web application for buying old coupons!
 
 [ ] REVIEW - CREATE REVIEW<br>
 [ ] REVIEW - UPDATE REVIEW<br>
-[ ] REVIEW - SEE REVIEWS<br>
-	>	[ ] REVIEW - SEE RANK OF REVIEWS ( ASYNC )
-<br>
-	>	[ ] REVIEW - SEE PARTICULAR REVIEWS
+[ ] REVIEW - SEE REVIEWS
+<br> > [ ] REVIEW - SEE RANK OF REVIEWS ( ASYNC )
+<br> > [ ] REVIEW - SEE PARTICULAR REVIEWS
 <br>

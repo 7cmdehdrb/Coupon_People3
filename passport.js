@@ -1,4 +1,5 @@
 var GitHubStrategy = require("passport-github").Strategy;
+var GoogleStrategy = require("passport-google-oauth20").Strategy;
 import { userModel } from "./server/models/users";
 
 export const githubStrategy = new GitHubStrategy(
@@ -9,19 +10,15 @@ export const githubStrategy = new GitHubStrategy(
     },
     function (accessToken, refreshToken, profile, cb) {
         const { username: email, displayName: nickname, photos: profileImage, provider: loginMethod } = profile;
-        try {
-            const query = userModel.findOne({
-                email,
-                loginMethod,
-            });
 
-            query.exec((err, data) => {
-                if (err) {
-                    console.log(err);
-                    throw Error("Error on Github Login");
-                }
-                if (data == null) {
-                    const user = userModel.create({
+        const existUser = userModel.findOne({ email });
+
+        existUser.exec((err, data) => {
+            if (err) return err, null;
+
+            if (data === null) {
+                userModel
+                    .create({
                         email,
                         nickname,
                         profileImage: profileImage[0].value,
@@ -30,15 +27,59 @@ export const githubStrategy = new GitHubStrategy(
                         isActivated: true,
                         loginMethod,
                         money: 10000,
+                    })
+                    .then((user) => {
+                        return cb(null, user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
                     });
-                    return cb(err, user);
-                } else {
-                    return cb(err, data);
-                }
-            });
-        } catch (error) {
-            console.log(error);
-            return cb(err, null);
-        }
+            } else if (data.loginMethod == "github") {
+                return cb(null, data);
+            } else {
+                return cb(null, null);
+            }
+        });
+    }
+);
+
+export const googleStrategy = new GoogleStrategy(
+    {
+        clientID: process.env.GOOGLE_ID,
+        clientSecret: process.env.GOOGLE_SECRET,
+        callbackURL: "http://localhost:3000/users/login/google/callback",
+    },
+    function (accessToken, refreshToken, profile, cb) {
+        const { id: email, displayName: nickname, photos: profileImage, provider: loginMethod } = profile;
+
+        const existUser = userModel.findOne({ email });
+
+        existUser.exec((err, data) => {
+            if (err) return err, null;
+
+            if (data === null) {
+                userModel
+                    .create({
+                        email,
+                        nickname,
+                        profileImage: profileImage[0].value,
+                        isAdmin: false,
+                        emailValid: true,
+                        isActivated: true,
+                        loginMethod,
+                        money: 10000,
+                    })
+                    .then((user) => {
+                        return cb(err, user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            } else if (data.loginMethod == "google") {
+                return cb(err, data);
+            } else {
+                return cb(err, null);
+            }
+        });
     }
 );
